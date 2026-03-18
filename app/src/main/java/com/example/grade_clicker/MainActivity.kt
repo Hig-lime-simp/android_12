@@ -76,7 +76,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun GradeClickerApp(grades: List<Grade>) {
-    var points by rememberSaveable() { mutableIntStateOf(0) }
+    var points by rememberSaveable { mutableIntStateOf(0) }
     var clicks by rememberSaveable { mutableIntStateOf(0) }
 
     val currentGrade = determineGradeToShow(grades, points)
@@ -88,14 +88,12 @@ fun GradeClickerApp(grades: List<Grade>) {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceBetween
     ) {
-        // Заголовок
         Text(
             text = stringResource(id = R.string.app_name),
             style = MaterialTheme.typography.headlineLarge,
             modifier = Modifier.padding(16.dp)
         )
 
-        // Кликабельное изображение
         Image(
             painter = painterResource(id = currentGrade.imageId),
             contentDescription = null,
@@ -108,7 +106,6 @@ fun GradeClickerApp(grades: List<Grade>) {
             contentScale = ContentScale.Fit
         )
 
-        // Информация
         TransactionInfo(points = points, clicks = clicks)
     }
 }
@@ -121,7 +118,6 @@ fun TransactionInfo(points: Int, clicks: Int) {
     ) {
         Spacer(modifier = Modifier.height(8.dp))
 
-        // Строка с баллами
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceEvenly
@@ -134,7 +130,6 @@ fun TransactionInfo(points: Int, clicks: Int) {
 
         Spacer(modifier = Modifier.height(8.dp))
 
-        // Строка с кликами
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceEvenly
